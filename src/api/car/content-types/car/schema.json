@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cars",
+  "info": {
+    "singularName": "car",
+    "pluralName": "cars",
+    "displayName": "Car",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "model": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::brand.brand"
+    },
+    "noDeposit": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "freeDelivery": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "prices": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "car.price"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "pluginOptions": {}
+    },
+    "slug": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "color": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::color.color"
+    },
+    "compositeName": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "enable": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "cars"
+    },
+    "power": {
+      "type": "string"
+    },
+    "seats": {
+      "type": "string"
+    }
+  }
+}

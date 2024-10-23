@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_car_prices",
+  "info": {
+    "displayName": "Price",
+    "icon": "star",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "daily": {
+      "type": "decimal",
+      "required": true
+    },
+    "weekly": {
+      "type": "decimal",
+      "required": true
+    },
+    "monthly": {
+      "type": "decimal",
+      "required": true
+    },
+    "bestDeal": {
+      "type": "enumeration",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "required": true
+    }
+  }
+}
