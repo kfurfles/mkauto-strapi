@@ -3,7 +3,6 @@ import { errors } from '@strapi/utils'
 import { get } from 'lodash'
 import slugify from "slugify";
 const { PolicyError } = errors
-strapi as Core.Strapi
 
 const captalize = (word: string) => {
   return (word[0].toUpperCase()+word.slice(1).toLowerCase()).trim()
