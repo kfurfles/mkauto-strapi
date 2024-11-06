@@ -1,8 +1,10 @@
-import { ContentType } from "@strapi/types/dist/data";
-import { NonPopulatableAttributeNames } from "@strapi/types/dist/schema";
+// import { ContentType } from "@strapi/types/dist/data";
+// import { NonPopulatableAttributeNames } from "@strapi/types/dist/schema";
 import { Car } from "../../types";
+import { ApiCarCar } from "../../types/generated/contentTypes";
 
-export function modelToCar(item: ContentType<"api::car.car", "brand" | "color" | "categories" | NonPopulatableAttributeNames<"api::car.car">>) {
+export function modelToCar(item: any) {
+// export function modelToCar(item: ContentType<"api::car.car", "brand" | "color" | "categories" | NonPopulatableAttributeNames<"api::car.car">>) {
 
   const {
     brand,
