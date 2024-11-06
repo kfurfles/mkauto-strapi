@@ -27,7 +27,7 @@ export default {
     const slug = slugify(`${model} ${color} ${year}`, { lower: true, trim: true })
 
     event.params.data.slug = slug
-    event.params.data.compositeName = `${brand} ${model.trim()} ${captalize(color)} ${year.trim()}`
+    event.params.data.compositeName = `${brand} ${model.trim()} ${captalize(color)} ${year}`
   },
   async beforeUpdate(event) {      
     const { data, where } = event.params
@@ -76,7 +76,7 @@ export default {
 
     const slug = slugify(`${model} ${color} ${year}`, { lower: true, trim: true })
     event.params.data.slug = slug
-    event.params.data.compositeName = `${brand} ${model.trim()} ${captalize(color)} ${year.trim()}`
+    event.params.data.compositeName = `${brand} ${model.trim()} ${captalize(color)} ${year}`
 
     return event
   },

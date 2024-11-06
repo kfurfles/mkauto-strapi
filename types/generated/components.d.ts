@@ -8,7 +8,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    images: Schema.Attribute.Component<'shared.media', true>;
   };
 }
 
@@ -58,7 +58,9 @@ export interface SharedMedia extends Struct.ComponentSchema {
     icon: 'file-video';
     description: '';
   };
-  attributes: {};
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
 }
 
 export interface HeaderItemTypesButton extends Struct.ComponentSchema {
@@ -96,8 +98,6 @@ export interface CarPrice extends Struct.ComponentSchema {
     daily: Schema.Attribute.Decimal & Schema.Attribute.Required;
     weekly: Schema.Attribute.Decimal & Schema.Attribute.Required;
     monthly: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    bestDeal: Schema.Attribute.Enumeration<['daily', 'weekly', 'monthly']> &
-      Schema.Attribute.Required;
   };
 }
 

@@ -522,34 +522,6 @@ export interface PluginSlugifySlug extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutAbout extends Struct.SingleTypeSchema {
-  collectionName: 'abouts';
-  info: {
-    singularName: 'about';
-    pluralName: 'abouts';
-    displayName: 'About';
-    description: 'Write about yourself and the content you create';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Schema.Attribute.String;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'>;
-  };
-}
-
 export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
   collectionName: 'brands';
   info: {
@@ -564,6 +536,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
   attributes: {
     name: Schema.Attribute.String;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -592,17 +565,13 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
     brand: Schema.Attribute.Relation<'oneToOne', 'api::brand.brand'>;
     noDeposit: Schema.Attribute.Boolean;
     freeDelivery: Schema.Attribute.Boolean;
-    prices: Schema.Attribute.Component<'car.price', false>;
     categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::category.category'
     >;
-    photos: Schema.Attribute.Media<'images' | 'files', true> &
-      Schema.Attribute.Required;
     slug: Schema.Attribute.String;
     color: Schema.Attribute.Relation<'oneToOne', 'api::color.color'>;
     compositeName: Schema.Attribute.String;
-    year: Schema.Attribute.String & Schema.Attribute.Required;
     enable: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
@@ -610,8 +579,22 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::collection.collection'
     >;
-    power: Schema.Attribute.String;
     seats: Schema.Attribute.String;
+    year: Schema.Attribute.Integer;
+    power: Schema.Attribute.Integer;
+    photos: Schema.Attribute.Component<'shared.slider', false>;
+    priceDaily: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    priceWeekly: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    priceMonthly: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    recommended: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -637,6 +620,9 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
   attributes: {
     name: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -666,6 +652,7 @@ export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
   attributes: {
     name: Schema.Attribute.String;
     cars: Schema.Attribute.Relation<'manyToMany', 'api::car.car'>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -692,20 +679,11 @@ export interface ApiColorColor extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: false;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
-    name: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    name: Schema.Attribute.String;
     color: Schema.Attribute.String &
       Schema.Attribute.CustomField<'plugin::color-picker.color'>;
+    slug: Schema.Attribute.UID<'name'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -762,7 +740,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     Title: Schema.Attribute.String;
@@ -1159,7 +1137,6 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
-      'api::about.about': ApiAboutAbout;
       'api::brand.brand': ApiBrandBrand;
       'api::car.car': ApiCarCar;
       'api::category.category': ApiCategoryCategory;

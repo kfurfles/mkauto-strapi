@@ -30,26 +30,10 @@
       "pluginOptions": {},
       "type": "boolean"
     },
-    "prices": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {},
-      "component": "car.price"
-    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"
-    },
-    "photos": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "pluginOptions": {}
     },
     "slug": {
       "pluginOptions": {},
@@ -63,10 +47,6 @@
     "compositeName": {
       "type": "string"
     },
-    "year": {
-      "type": "string",
-      "required": true
-    },
     "enable": {
       "type": "boolean",
       "default": true,
@@ -78,11 +58,39 @@
       "target": "api::collection.collection",
       "mappedBy": "cars"
     },
-    "power": {
-      "type": "string"
-    },
     "seats": {
       "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "power": {
+      "type": "integer"
+    },
+    "photos": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.slider"
+    },
+    "priceDaily": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "priceWeekly": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "priceMonthly": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "recommended": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

@@ -18,15 +18,6 @@
     "monthly": {
       "type": "decimal",
       "required": true
-    },
-    "bestDeal": {
-      "type": "enumeration",
-      "enum": [
-        "daily",
-        "weekly",
-        "monthly"
-      ],
-      "required": true
     }
   }
 }
