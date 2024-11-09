@@ -1,0 +1,56 @@
+{
+    "kind": "singleType",
+    "collectionName": "headers",
+    "info": {
+        "singularName": "header",
+        "pluralName": "headers",
+        "displayName": "Header",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "categoryFilter": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+        },
+        "brandFilter": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+        },
+        "cta": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.link"
+        },
+        "navigation": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.link"
+        },
+        "desktopLogo": {
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ],
+            "type": "media",
+            "multiple": false
+        },
+        "mobileLogo": {
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ],
+            "type": "media",
+            "multiple": false
+        }
+    }
+}

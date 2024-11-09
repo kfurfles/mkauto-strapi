@@ -34,38 +34,6 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.seo"
-    },
-    "desktopLogo": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "mobileLogo": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "files",
-        "images"
-      ]
-    },
-    "CTA": {
-      "type": "component",
-      "repeatable": false,
-      "component": "header-item-types.button"
-    },
-    "footerLogo": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
     }
   }
 }

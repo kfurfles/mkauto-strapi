@@ -696,6 +696,42 @@ export interface ApiColorColor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    singularName: 'footer';
+    pluralName: 'footers';
+    displayName: 'Footer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    logo: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.Required;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'lorem ipsum amet'>;
+    supportPhone: Schema.Attribute.String;
+    supportAvailability: Schema.Attribute.String;
+    supportEmail: Schema.Attribute.String;
+    hotPages: Schema.Attribute.Component<'shared.link', true>;
+    socialMedia: Schema.Attribute.Component<'shared.link', true>;
+    copyright: Schema.Attribute.String;
+    navigation: Schema.Attribute.Component<'shared.link', true>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::footer.footer'>;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -712,11 +748,42 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
-    desktopLogo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    mobileLogo: Schema.Attribute.Media<'files' | 'images'> &
-      Schema.Attribute.Required;
-    CTA: Schema.Attribute.Component<'header-item-types.button', false>;
-    footerLogo: Schema.Attribute.Media<
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+  };
+}
+
+export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
+  collectionName: 'headers';
+  info: {
+    singularName: 'header';
+    pluralName: 'headers';
+    displayName: 'Header';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    categoryFilter: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    brandFilter: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    cta: Schema.Attribute.Component<'shared.link', false>;
+    navigation: Schema.Attribute.Component<'shared.link', true>;
+    desktopLogo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    mobileLogo: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -727,7 +794,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::header.header'>;
   };
 }
 
@@ -1142,7 +1209,9 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::collection.collection': ApiCollectionCollection;
       'api::color.color': ApiColorColor;
+      'api::footer.footer': ApiFooterFooter;
       'api::global.global': ApiGlobalGlobal;
+      'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;

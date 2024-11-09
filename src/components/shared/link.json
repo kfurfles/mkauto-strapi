@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_shared_links",
+  "info": {
+    "displayName": "Navigation",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "link",
+        "button"
+      ],
+      "default": "link"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "MiArrowDown",
+        "MiArrowLeft",
+        "MiArrowRight",
+        "MiArrowUp",
+        "MiCarBody",
+        "MiCarSeat",
+        "MiCarSpeedometer",
+        "MiCarTransmission",
+        "MiCheck",
+        "MiFilter",
+        "MiInstagram",
+        "MiLocationPin",
+        "MiLoupe",
+        "MiMail",
+        "MiMenuBurger",
+        "MiMicroChevronDown",
+        "MiMicroChevronLeft",
+        "MiMicroChevronRight",
+        "MiMicroChevronUp",
+        "MiPantone",
+        "MiPhone",
+        "MiSquareArrow",
+        "MiSupportHead",
+        "MiWhatsApp"
+      ]
+    }
+  }
+}

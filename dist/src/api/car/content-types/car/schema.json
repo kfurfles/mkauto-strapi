@@ -1,0 +1,96 @@
+{
+    "kind": "collectionType",
+    "collectionName": "cars",
+    "info": {
+        "singularName": "car",
+        "pluralName": "cars",
+        "displayName": "Car",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "model": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+        },
+        "brand": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::brand.brand"
+        },
+        "noDeposit": {
+            "pluginOptions": {},
+            "type": "boolean"
+        },
+        "freeDelivery": {
+            "pluginOptions": {},
+            "type": "boolean"
+        },
+        "categories": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::category.category"
+        },
+        "slug": {
+            "pluginOptions": {},
+            "type": "string"
+        },
+        "color": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::color.color"
+        },
+        "compositeName": {
+            "type": "string"
+        },
+        "enable": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+        },
+        "collections": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::collection.collection",
+            "mappedBy": "cars"
+        },
+        "seats": {
+            "type": "string"
+        },
+        "year": {
+            "type": "integer"
+        },
+        "power": {
+            "type": "integer"
+        },
+        "photos": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.slider"
+        },
+        "priceDaily": {
+            "required": true,
+            "default": 0,
+            "type": "integer"
+        },
+        "priceWeekly": {
+            "type": "integer",
+            "required": true,
+            "default": 0
+        },
+        "priceMonthly": {
+            "type": "integer",
+            "required": true,
+            "default": 0
+        },
+        "recommended": {
+            "type": "boolean",
+            "default": false,
+            "required": true
+        }
+    }
+}

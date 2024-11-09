@@ -1,0 +1,17 @@
+{
+    "collectionName": "components_car_specifications",
+    "info": {
+        "displayName": "specifications",
+        "icon": "hashtag",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "power": {
+            "type": "string"
+        },
+        "seats": {
+            "type": "string"
+        }
+    }
+}

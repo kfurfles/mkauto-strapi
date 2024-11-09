@@ -63,6 +63,49 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_links';
+  info: {
+    displayName: 'Navigation';
+    icon: 'earth';
+    description: '';
+  };
+  attributes: {
+    link: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['link', 'button']> &
+      Schema.Attribute.DefaultTo<'link'>;
+    icon: Schema.Attribute.Enumeration<
+      [
+        'MiArrowDown',
+        'MiArrowLeft',
+        'MiArrowRight',
+        'MiArrowUp',
+        'MiCarBody',
+        'MiCarSeat',
+        'MiCarSpeedometer',
+        'MiCarTransmission',
+        'MiCheck',
+        'MiFilter',
+        'MiInstagram',
+        'MiLocationPin',
+        'MiLoupe',
+        'MiMail',
+        'MiMenuBurger',
+        'MiMicroChevronDown',
+        'MiMicroChevronLeft',
+        'MiMicroChevronRight',
+        'MiMicroChevronUp',
+        'MiPantone',
+        'MiPhone',
+        'MiSquareArrow',
+        'MiSupportHead',
+        'MiWhatsApp',
+      ]
+    >;
+  };
+}
+
 export interface HeaderItemTypesButton extends Struct.ComponentSchema {
   collectionName: 'components_header_item_types_buttons';
   info: {
@@ -109,6 +152,7 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'shared.link': SharedLink;
       'header-item-types.button': HeaderItemTypesButton;
       'car.specifications': CarSpecifications;
       'car.price': CarPrice;
